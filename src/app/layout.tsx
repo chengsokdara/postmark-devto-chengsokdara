@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { PropsWithChildren } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -6,13 +7,9 @@ export const metadata: Metadata = {
   description: "by Cheng Sokdara",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en">
+    <html data-theme="black" lang="en">
       <body>{children}</body>
     </html>
   );

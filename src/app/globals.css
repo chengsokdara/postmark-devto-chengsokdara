@@ -1,6 +1,15 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "black";
+  default: true;
 
-html, body {
+  --radius-selector: 1rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+}
+
+html,
+body {
   height: 100%;
 }
