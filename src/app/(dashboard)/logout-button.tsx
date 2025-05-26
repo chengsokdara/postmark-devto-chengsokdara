@@ -1,7 +1,8 @@
 "use client";
 
 import { auth } from "@/lib/firebase/client";
-import { PATHS, ROUTES } from "@/types/enum.type";
+import { ROUTES } from "@/types/enum.type";
+import { API_PATHS } from "@/types/key.type";
 import { ArrowLeftEndOnRectangleIcon } from "@heroicons/react/20/solid";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
@@ -16,7 +17,7 @@ export function LogoutButton() {
     try {
       await auth.signOut();
 
-      const logoutResult = await fetch(PATHS.API.FIREBASE.AUTH.LOGOUT, {
+      const logoutResult = await fetch(API_PATHS.FIREBASE.AUTH.LOGOUT, {
         method: "POST",
       });
       console.log(onLogout.name, { logoutResult });

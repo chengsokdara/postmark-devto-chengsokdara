@@ -1,4 +1,4 @@
-import { stringify } from "@/utils";
+import { stringify } from "@/utils/string";
 import { NextRequest, NextResponse } from "next/server";
 
 const API_PATH = "/api/postmark/inbound/webhook";

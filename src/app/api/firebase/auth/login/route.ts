@@ -1,7 +1,7 @@
 import { auth, db } from "@/lib/firebase/admin";
 import { COLLECTIONS } from "@/types/enum.type";
 import { CreateProfileDataType } from "@/types/profile.type";
-import { stringify } from "@/utils";
+import { stringify } from "@/utils/string";
 import { FieldValue } from "firebase-admin/firestore";
 import { NextRequest, NextResponse } from "next/server";
 

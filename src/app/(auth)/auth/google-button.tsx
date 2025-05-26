@@ -2,7 +2,8 @@
 
 import type { RequestBody as FirebaseAuthLoginRequestBody } from "@/app/api/firebase/auth/login/route";
 import { auth, googleProvider } from "@/lib/firebase/client";
-import { PATHS, ROUTES } from "@/types/enum.type";
+import { ROUTES } from "@/types/enum.type";
+import { API_PATHS } from "@/types/key.type";
 import { getAdditionalUserInfo, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
@@ -23,7 +24,7 @@ export function GoogleButton() {
       const idToken = await signInResult.user.getIdToken();
       console.info(onLoginGoogle.name, { idToken });
 
-      const logInResult = await fetch(PATHS.API.FIREBASE.AUTH.LOGIN, {
+      const logInResult = await fetch(API_PATHS.FIREBASE.AUTH.LOGIN, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
