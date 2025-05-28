@@ -19,7 +19,12 @@ import { NextResponse } from "next/server";
 export function controlledError<T = unknown>(
   error: unknown,
 ): NextResponse<ApiResponse<T>> {
-  if (error instanceof ValidationError) return badRequest(error.message);
+  if (
+    error instanceof ValidationError ||
+    error instanceof SyntaxError ||
+    error instanceof TypeError
+  )
+    return badRequest(error.message);
   if (error instanceof NoContentError) return noContent(error.message);
   if (error instanceof PreconditionError)
     return preconditionFailed(error.message);
@@ -51,7 +56,10 @@ export function internalError(
   message = "Internal Server Error",
 ): NextResponse<ApiErrorResponse> {
   logError(LOG_KEYS.RESPONSE.INTERNAL_ERROR, { error: stringify(error) });
-  return NextResponse.json({ error: message }, { status: 500 });
+  return NextResponse.json(
+    { error: `${message} ${stringify(error)}` },
+    { status: 500 },
+  );
 }
 
 export function noContent(

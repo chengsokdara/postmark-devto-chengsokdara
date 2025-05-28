@@ -7,6 +7,9 @@ export const API_PATHS = {
   },
 } as const;
 
+/**
+ * This is for better search across logs
+ */
 export const LOG_KEYS = {
   API: {
     POSTMARK: {
@@ -25,6 +28,9 @@ export const LOG_KEYS = {
         FIRESTORE_ERROR: "api.postmark.webhook.firestore_error",
       },
     },
+    WEBHOOK: {
+      SLUG_PARAM: "api.webhook.slug_param",
+    },
   },
   RESPONSE: {
     INTERNAL_ERROR: "response.internal_error",
@@ -38,3 +44,7 @@ type ExtractValues<T> = T extends string
     : never;
 
 export type LogKeyType = ExtractValues<typeof LOG_KEYS>;
+
+export const QUERY_KEYS = {
+  USER: "user",
+} as const;

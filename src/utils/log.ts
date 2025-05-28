@@ -1,4 +1,5 @@
 import type { LogKeyType } from "@/types/key.type";
+import { stringify } from "@/utils/string";
 
 const isBrowser = typeof window !== "undefined";
 
@@ -22,23 +23,23 @@ function shouldLog(level: "info" | "warn" | "error") {
 
 function formatPrefix(level: string, key: string) {
   const scope = isBrowser ? "[CLIENT]" : "[SERVER]";
-  return `${scope} [${level.toUpperCase()}] ${key}`;
+  return `${scope}[${level.toUpperCase()}] ${key}`;
 }
 
 export function logInfo(key: LogKeyType, data?: unknown) {
   if (!isProduction && shouldLog("info")) {
-    console.log(formatPrefix("info", key), data ?? "");
+    console.log(formatPrefix("info", key), data ? stringify(data) : "");
   }
 }
 
 export function logWarn(key: LogKeyType, data?: unknown) {
   if (!isProduction && shouldLog("warn")) {
-    console.warn(formatPrefix("warn", key), data ?? "");
+    console.warn(formatPrefix("warn", key), data ? stringify(data) : "");
   }
 }
 
 export function logError(key: LogKeyType, data?: unknown) {
   if (shouldLog("error")) {
-    console.error(formatPrefix("error", key), data ?? "");
+    console.error(formatPrefix("error", key), data ? stringify(data) : "");
   }
 }

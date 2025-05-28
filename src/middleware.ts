@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
   const sessionCookie = request.cookies.get("session")?.value;
-  console.log(middleware.name, { sessionCookie });
   const isRoot = request.nextUrl.pathname === "/";
   if (isRoot && sessionCookie) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
