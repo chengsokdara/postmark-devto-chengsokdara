@@ -234,7 +234,7 @@ export const metadataSchema = z.object({
   processingNotes: z.array(z.string()).nullable(), // 🧠 Debug logs
 });
 
-export const extractedJobApplicationSchema = z.object({
+export const jobApplicationSchema = z.object({
   applicant: applicantSchema,
   position: positionSchema,
   application: applicationSchema,
@@ -243,6 +243,4 @@ export const extractedJobApplicationSchema = z.object({
   metadata: metadataSchema.nullable(),
 });
 
-export type ExtractedJobApplication = z.infer<
-  typeof extractedJobApplicationSchema
->;
+export type JobApplication = z.infer<typeof jobApplicationSchema>;

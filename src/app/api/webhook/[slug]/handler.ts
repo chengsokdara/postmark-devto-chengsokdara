@@ -28,11 +28,14 @@ export async function handleWebhook(
   payload: InboundWebhookPayloadType,
   user: ProfileDataType,
 ): Promise<Record<string, any>> {
+  const { Attachments, ...emailPayload } = payload;
   try {
-    const emailRef = db.collection(COLLECTIONS.EMAILS).doc(payload.MessageID);
+    const emailRef = db
+      .collection(COLLECTIONS.EMAILS)
+      .doc(emailPayload.MessageID);
     const emailData: CreateEmailDataType = {
-      ...payload,
-      hasAttachment: payload.Attachments.length > 0,
+      ...emailPayload,
+      hasAttachment: Attachments.length > 0,
       isJobApplication: true,
       owner: user.uid,
       createdAt: FieldValue.serverTimestamp(),
@@ -41,26 +44,26 @@ export async function handleWebhook(
     await emailRef.set(emailData, { merge: true });
 
     logInfo(LOG_KEYS.API.POSTMARK.WEBHOOK.PROCESSING_START, {
-      from: payload.From,
-      subject: payload.Subject,
-      messageId: payload.MessageID,
-      attachmentLength: payload.Attachments.length,
+      from: emailPayload.From,
+      subject: emailPayload.Subject,
+      messageId: emailPayload.MessageID,
+      attachmentLength: Attachments.length,
     });
 
     // Step 1: Prepare email content for processing
     const emailText = [
-      `Subject: ${payload.Subject}`,
-      `From: ${payload.From} ${payload.FromName ? `(${payload.FromName})` : ""}`,
-      `Date: ${payload.Date}`,
+      `Subject: ${emailPayload.Subject}`,
+      `From: ${emailPayload.From} ${emailPayload.FromName ? `(${emailPayload.FromName})` : ""}`,
+      `Date: ${emailPayload.Date}`,
       "",
-      payload.TextBody || payload.HtmlBody || "",
+      emailPayload.TextBody || emailPayload.HtmlBody || "",
     ].join("\n");
 
     // Step 2: Process attachments to find and parse resumes
     let resumeData: ParsedAttachment | undefined;
     let resumeText: string | undefined;
-    if (payload.Attachments.length) {
-      const attachmentsResult = await handleAttachments(payload.Attachments);
+    if (Attachments.length) {
+      const attachmentsResult = await handleAttachments(Attachments);
       resumeData = attachmentsResult.resumeData;
       resumeText = attachmentsResult.resumeText;
     }
@@ -139,9 +142,9 @@ export async function handleWebhook(
   } catch (error) {
     logError(LOG_KEYS.API.POSTMARK.WEBHOOK.PROCESSING_ERROR, {
       error,
-      from: payload.From,
-      subject: payload.Subject,
-      messageId: payload.MessageID,
+      from: emailPayload.From,
+      subject: emailPayload.Subject,
+      messageId: emailPayload.MessageID,
     });
     throw error;
   }

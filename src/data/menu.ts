@@ -13,12 +13,12 @@ export const menuItems: MenuItems[] = [
     icon: Squares2X2Icon,
     name: "Dashboard",
   },
+  { href: "/application", icon: BriefcaseIcon, name: "Application" },
+  { href: "/candidate", icon: UserGroupIcon, name: "Candidate" },
   {
     href: "/email",
     icon: InboxArrowDownIcon,
     name: "Email",
   },
-  { href: "/application", icon: BriefcaseIcon, name: "Application" },
-  { href: "/candidate", icon: UserGroupIcon, name: "Candidate" },
   { href: "/setting", icon: Cog6ToothIcon, name: "Setting" },
 ];

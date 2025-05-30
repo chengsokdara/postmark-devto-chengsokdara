@@ -1,7 +1,7 @@
 import {
   applicantSchema,
-  type ExtractedJobApplication,
   type InboundWebhookPayloadType,
+  type JobApplication,
 } from "@/app/api/postmark/webhook/schema";
 import type { DecodedIdToken } from "firebase-admin/auth";
 import { FieldValue as AdminFieldValue } from "firebase-admin/firestore";
@@ -18,7 +18,17 @@ type CommonDataType = {
   updatedAt: FieldValue;
 };
 
+export type NormalizeDataType = {
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type WithId<T> = T & { id: string };
+
+export type WithIndex<T> = T & { index: number };
+
+export type WithNormalize<T> = Omit<T, keyof NormalizeDataType> &
+  NormalizeDataType;
 
 // AuthUser Data Type
 
@@ -68,7 +78,7 @@ export type JobApplicationDataType = {
   candidateId: string; // foreign key to candidates collection
   status: JobApplicationStatus;
   notes?: string[];
-} & Omit<ExtractedJobApplication, "applicant"> &
+} & Omit<JobApplication, "applicant"> &
   CommonDataType;
 
 export type CreateJobApplicationDataType = Omit<JobApplicationDataType, "id">;
@@ -89,4 +99,6 @@ export type ProfileDataType = {
 
 export type CreateProfileDataType = Omit<ProfileDataType, "id">;
 
-export type UpdateProfileDataType = Omit<ProfileDataType, "id" | "createdAt">;
+export type UpdateProfileDataType = Partial<
+  Omit<ProfileDataType, "id" | "createdAt">
+>;
