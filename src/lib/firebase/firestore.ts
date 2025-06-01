@@ -1,10 +1,6 @@
 import { COLLECTIONS } from "@/types/enum.type";
 import { type DocumentData as AdminDocumentData } from "firebase-admin/firestore";
-import {
-  doc,
-  getDoc,
-  type DocumentData as ClientDocumentData,
-} from "firebase/firestore";
+import { type DocumentData as ClientDocumentData } from "firebase/firestore";
 
 type DocumentData = AdminDocumentData | ClientDocumentData;
 

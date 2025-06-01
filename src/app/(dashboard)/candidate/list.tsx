@@ -12,15 +12,15 @@ export async function CandidateList() {
   const { data } = await queryDocuments<CandidateDataType>(
     COLLECTIONS.CANDIDATES,
   );
-  let candidates = data.map((candidate) =>
+  const candidates = data.map((candidate) =>
     normalizeData<WithNormalize<CandidateDataType>>(candidate),
   );
 
-  const duplicated = Array.from({ length: 20 }, (_, idx) => ({
-    ...candidates[0],
-    id: `${idx}`,
-  }));
-  candidates = [...candidates, ...duplicated];
+  // const duplicated = Array.from({ length: 20 }, (_, idx) => ({
+  //   ...candidates[0],
+  //   id: `${idx}`,
+  // }));
+  // candidates = [...candidates, ...duplicated];
   // console.log({ candidates });
 
   const columns = defineColumns([

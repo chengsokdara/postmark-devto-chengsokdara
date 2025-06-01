@@ -1,7 +1,7 @@
 import { MenuItems } from "@/types/index.type";
 import {
   BriefcaseIcon,
-  Cog6ToothIcon,
+  // Cog6ToothIcon,
   InboxArrowDownIcon,
   Squares2X2Icon,
   UserGroupIcon,
@@ -20,5 +20,5 @@ export const menuItems: MenuItems[] = [
     icon: InboxArrowDownIcon,
     name: "Email",
   },
-  { href: "/setting", icon: Cog6ToothIcon, name: "Setting" },
+  // { href: "/setting", icon: Cog6ToothIcon, name: "Setting" },
 ];

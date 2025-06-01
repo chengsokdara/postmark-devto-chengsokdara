@@ -11,14 +11,14 @@ export function CopyButton({ slug }: CopyButtonPropType) {
   const showToast = useToast();
 
   const webhookUrl = useMemo(
-    () => `${process.env.NEXT_PUBLIC_APP_ORIGIN}/webhook/${slug}`,
+    () => `${process.env.NEXT_PUBLIC_APP_ORIGIN}/api/webhook/${slug}`,
     [slug],
   );
 
   const onCopy = useCallback(() => {
     showToast("Copied webhook URL to clipboard.", "success", 5000);
     navigator.clipboard.writeText(webhookUrl);
-  }, [webhookUrl]);
+  }, [showToast, webhookUrl]);
 
   return (
     <button

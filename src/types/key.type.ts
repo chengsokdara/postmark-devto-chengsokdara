@@ -37,6 +37,13 @@ export const LOG_KEYS = {
       SLUG_PARAM: "api.webhook.slug_param",
     },
   },
+  FIREBASE: {
+    AUTH: {
+      GET_AUTH_USER: "firebase.auth.get_auth_user",
+      GET_SESSION_COOKIE: "firebase.auth.get_session_cookie",
+      GET_USER_PROFILE: "firebase.auth.get_user_profile",
+    },
+  },
   RESPONSE: {
     INTERNAL_ERROR: "response.internal_error",
   },

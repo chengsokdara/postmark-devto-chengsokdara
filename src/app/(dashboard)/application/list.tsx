@@ -34,17 +34,17 @@ export async function ApplicationList() {
   const candidateMap = new Map(
     candidates.map((candidate) => [candidate.id, normalizeData(candidate)]),
   );
-  let applications = jobApplications.map((app) =>
+  const applications = jobApplications.map((app) =>
     normalizeData<ApplicationDataType>({
       ...app,
       candidate: candidateMap.get(app.candidateId) ?? null,
     }),
   );
-  const duplicated = Array.from({ length: 20 }, (_, idx) => ({
-    ...applications[0],
-    id: `${idx}`,
-  }));
-  applications = [...applications, ...duplicated];
+  // const duplicated = Array.from({ length: 20 }, (_, idx) => ({
+  //   ...applications[0],
+  //   id: `${idx}`,
+  // }));
+  // applications = [...applications, ...duplicated];
   // console.log({ applications });
 
   const columns = defineColumns([

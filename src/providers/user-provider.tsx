@@ -42,7 +42,8 @@ export function UserProvider({
     });
 
     return () => unsub?.();
-  }, []);
+  }, [queryClient]);
+
   return (
     <QueryClientProvider client={queryClient}>
       <HydrationBoundary state={dehydratedState}></HydrationBoundary>

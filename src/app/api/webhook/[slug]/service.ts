@@ -1,5 +1,4 @@
 import {
-  applicantSchema,
   jobApplicationSchema,
   type AttachmentPayloadType,
   type JobApplication,

@@ -1,6 +1,6 @@
 import { db } from "@/lib/firebase/admin";
 import { COLLECTIONS } from "@/types/enum.type";
-import type { WithId, WithNormalize } from "@/types/firestore.type";
+import type { WithId } from "@/types/firestore.type";
 import {
   CollectionReference,
   Timestamp,
@@ -127,14 +127,6 @@ export const queryDocuments = async <T extends DocumentData>(
   const docs = snap.docs.map((doc) => mapDoc<T>(doc));
   return { data: docs, lastDoc: snap.docs[snap.docs.length - 1] ?? null };
 };
-
-function chunkArray<T>(array: T[], size: number): T[][] {
-  const result: T[][] = [];
-  for (let i = 0; i < array.length; i += size) {
-    result.push(array.slice(i, i + size));
-  }
-  return result;
-}
 
 export const getCollectionRef = <T extends DocumentData>(
   collectionName: COLLECTIONS,

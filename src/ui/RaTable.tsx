@@ -12,14 +12,6 @@ type Column<T> = {
   renderRow?: (row: T, index: number) => React.ReactNode;
 };
 
-type NestedKeyOf<T> = T extends object
-  ? {
-      [K in keyof T]: T[K] extends object
-        ? `${K & string}.${NestedKeyOf<T[K]> & string}`
-        : K & string;
-    }[keyof T]
-  : never;
-
 type RaTableProps<T> = {
   rows: T[];
   columns: Column<T>[];

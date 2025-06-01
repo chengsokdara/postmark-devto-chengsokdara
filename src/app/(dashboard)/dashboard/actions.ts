@@ -29,8 +29,8 @@ const generateWebhookUrlSchema = z.object({
   openaiApiKey: z
     .string()
     .regex(
-      /^sk-[a-zA-Z0-9]{48}$/,
-      "Invalid OpenAI token format. It must start with sk- followed by 48 alphanumeric characters",
+      /^sk-.+$/,
+      "Invalid OpenAI API key format. Must start with 'sk-' followed by any characters.",
     ),
 });
 

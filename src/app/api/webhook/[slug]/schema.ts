@@ -221,15 +221,15 @@ export const applicationSchema = z.object({
   motivation: z.string().nullable(), // ⚠️ Often part of cover letter
   keyHighlights: z.array(z.string()).nullable(), // 🧠 From NLP summarization
   relevantExperience: z.array(z.string()).nullable(), // 🧠 Extracted or generated
-  submittedAt: z.string().datetime().nullable(), // ✅ From email metadata
+  submittedAt: z.string().nullable(), // ✅ From email metadata
   source: z.string().nullable(), // ⚠️ Email, LinkedIn, referral
   referredBy: z.string().nullable(), // ⚠️ Rare
 });
 
 // ✅ Internal system tracking (not from applicant)
 export const metadataSchema = z.object({
-  receivedAt: z.string().datetime(), // ✅ Email header
-  parsedAt: z.string().datetime().nullable(), // 🧠 When processed
+  receivedAt: z.string(), // ✅ Email header
+  parsedAt: z.string().nullable(), // 🧠 When processed
   sourceEmailId: z.string().nullable(), // ✅ Internal ref
   processingNotes: z.array(z.string()).nullable(), // 🧠 Debug logs
 });

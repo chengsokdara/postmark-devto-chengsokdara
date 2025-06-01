@@ -28,7 +28,7 @@ export function LogoutButton() {
       console.warn(onLogout.name, { error });
       setIsBusy(false);
     }
-  }, []);
+  }, [router]);
 
   return (
     <button

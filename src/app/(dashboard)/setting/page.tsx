@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { SettingContent } from "@/app/(dashboard)/setting/content";
 
 export default function SettingPage() {

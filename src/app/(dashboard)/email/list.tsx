@@ -10,15 +10,15 @@ import {
 
 export async function EmailList() {
   const { data } = await queryDocuments<EmailDataType>(COLLECTIONS.EMAILS);
-  let emails = data.map((email) =>
+  const emails = data.map((email) =>
     normalizeData<WithNormalize<EmailDataType>>(email),
   );
 
-  const duplicated = Array.from({ length: 20 }, (_, idx) => ({
-    ...emails[0],
-    id: `${idx}`,
-  }));
-  emails = [...emails, ...duplicated];
+  // const duplicated = Array.from({ length: 20 }, (_, idx) => ({
+  //   ...emails[0],
+  //   id: `${idx}`,
+  // }));
+  // emails = [...emails, ...duplicated];
   // console.log({ emails });
 
   const columns = defineColumns([

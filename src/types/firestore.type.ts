@@ -2,7 +2,7 @@ import {
   applicantSchema,
   type InboundWebhookPayloadType,
   type JobApplication,
-} from "@/app/api/postmark/webhook/schema";
+} from "@/app/api/webhook/[slug]/schema";
 import type { DecodedIdToken } from "firebase-admin/auth";
 import { FieldValue as AdminFieldValue } from "firebase-admin/firestore";
 import type { User } from "firebase/auth";
@@ -98,7 +98,9 @@ export type ProfileDataType = {
   uid: string;
 } & CommonDataType;
 
-export type CreateProfileDataType = Omit<ProfileDataType, "id">;
+export type CreateProfileDataType = Partial<
+  Omit<ProfileDataType, "id" | "owner">
+>;
 
 export type UpdateProfileDataType = Partial<
   Omit<ProfileDataType, "id" | "createdAt">

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { ApplicationContent } from "@/app/(dashboard)/application/content";
 
 export default async function ApplicationPage() {

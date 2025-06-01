@@ -1,6 +1,5 @@
 import {
   CandidateDataType,
-  NormalizeDataType,
   WithIndex,
   WithNormalize,
 } from "@/types/firestore.type";

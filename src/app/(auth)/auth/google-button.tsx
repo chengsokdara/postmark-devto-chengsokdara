@@ -11,7 +11,7 @@ import { useCallback, useState } from "react";
 export function GoogleButton() {
   const router = useRouter();
 
-  const [error, setError] = useState<any>();
+  const [error, setError] = useState<unknown>();
   const [isBusy, setIsBusy] = useState(false);
 
   const onLoginGoogle = useCallback(async () => {
@@ -42,7 +42,7 @@ export function GoogleButton() {
       setError(error);
       setIsBusy(false);
     }
-  }, []);
+  }, [router]);
 
   return (
     <>

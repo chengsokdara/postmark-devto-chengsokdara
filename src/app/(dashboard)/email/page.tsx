@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { EmailContent } from "@/app/(dashboard)/email/content";
 
 export default async function EmailPage() {

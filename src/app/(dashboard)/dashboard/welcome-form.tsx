@@ -67,25 +67,6 @@ export function WelcomeForm() {
           type="warning"
           onClose={() => setShowError(false)}
         />
-        {/* {showError ? (
-          <div
-            role="alert"
-            className="alert alert-warning relative items-start"
-            onClick={() => setShowError(false)}
-          >
-            <ExclamationTriangleIcon className="size-5 mt-0.5" />
-            <div>
-              <strong>{state.message}:</strong>
-              <p className="whitespace-pre-line">{state.error}</p>
-            </div>
-            <button
-              className="btn btn-circle btn-xs btn-ghost absolute top-1 end-1"
-              onClick={() => setShowError(false)}
-            >
-              <XMarkIcon className="size-4" />
-            </button>
-          </div>
-        ) : null} */}
       </fieldset>
     </form>
   );

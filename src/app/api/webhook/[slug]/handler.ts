@@ -37,7 +37,7 @@ export async function handleWebhook(
       ...emailPayload,
       hasAttachment: Attachments.length > 0,
       isJobApplication: true,
-      owner: user.uid,
+      owner: user.id,
       createdAt: FieldValue.serverTimestamp(),
       updatedAt: FieldValue.serverTimestamp(),
     };
@@ -102,7 +102,7 @@ export async function handleWebhook(
     const candidateData: CreateCandidateDataType = {
       ...extractedApplicant,
       email: normalizeEmail(extracted.applicant.email),
-      owner: user.uid,
+      owner: user.id,
       createdAt: FieldValue.serverTimestamp(),
       updatedAt: FieldValue.serverTimestamp(),
     };
@@ -112,7 +112,7 @@ export async function handleWebhook(
       ...extractedJobApplication,
       candidateId: candidateRef.id,
       status: "submitted",
-      owner: user.uid,
+      owner: user.id,
       createdAt: FieldValue.serverTimestamp(),
       updatedAt: FieldValue.serverTimestamp(),
     };
