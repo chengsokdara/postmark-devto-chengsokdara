@@ -19,7 +19,10 @@ export async function EmailByIdContent({ id }: EmailByIdContentPropType) {
 
   return (
     <>
-      <NavBar next={`${process.env.APP_ORIGIN}/email`} />
+      <NavBar
+        next="/email"
+        title={`${email.FromName} - ${email.From} | Parsed Email`}
+      />
       <section className="h-full overflow-y-auto">
         <EmailDetail title="Email Details" data={email} />
       </section>

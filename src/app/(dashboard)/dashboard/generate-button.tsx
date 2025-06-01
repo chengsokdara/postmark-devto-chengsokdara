@@ -1,20 +1,18 @@
 "use client";
 
-import { useActionState } from "react";
-import { type ProfileSlugState, updateProfileSlug } from "./actions";
-
-const initialState: ProfileSlugState = {
-  success: false,
-};
+import { generateWebhookUrl } from "@/app/(dashboard)/dashboard/actions";
+import { useFormStatus } from "react-dom";
 
 export function GenerateButton() {
-  const [state, action, isPending] = useActionState(
-    updateProfileSlug,
-    initialState,
-  );
+  const { pending } = useFormStatus();
+
   return (
-    <button className="btn btn-primary" disabled={isPending}>
-      {isPending && <span className="loading loading-spinner"></span>}
+    <button
+      className="btn btn-primary"
+      disabled={pending}
+      // formAction={generateWebhookUrl}
+    >
+      {pending && <span className="loading loading-bars loading-xs"></span>}
       Generate Webhook URL
     </button>
   );

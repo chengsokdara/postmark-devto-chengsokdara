@@ -1,0 +1,32 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    This path defines a 4-pointed star with curved (concave) sides.
+    The shape is created by four quadratic Bézier curves.
+
+    Coordinates:
+    ViewBox is 0 0 100 100.
+    Center of the viewBox is (50,50).
+
+    Tip Points of the Star:
+    N (North): (50, 5)
+    E (East):  (95, 50)
+    S (South): (50, 95)
+    W (West):  (5, 50)
+
+    Control Point for all curves:
+    C (Center): (50, 50)
+    Using the center as the control point for each quadratic Bézier curve
+    pulls the curve inwards, creating the concave effect.
+
+    Path Breakdown:
+    M 50 5           - Move to North tip (N)
+    Q 50 50, 95 50   - Quadratic Bézier curve from N to East tip (E), with control point C
+    Q 50 50, 50 95   - Quadratic Bézier curve from E to South tip (S), with control point C
+    Q 50 50, 5 50    - Quadratic Bézier curve from S to West tip (W), with control point C
+    Q 50 50, 50 5    - Quadratic Bézier curve from W back to North tip (N), with control point C
+    Z                - Close the path
+  -->
+  <g transform="rotate(45 50 50)">
+  <path d="M 50 5 Q 50 50 95 50 Q 50 50 50 95 Q 50 50 5 50 Q 50 50 50 5 Z" fill="#FFD700" />
+  </g>
+</svg>

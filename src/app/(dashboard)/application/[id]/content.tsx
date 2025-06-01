@@ -31,7 +31,10 @@ export async function ApplicationByIdContent({
 
   return (
     <>
-      <NavBar next={`${process.env.APP_ORIGIN}/application`} />
+      <NavBar
+        next="/application"
+        title={`${candidate.fullName} - ${application.position.title} | Job Application`}
+      />
       <section className="h-full overflow-y-auto">
         <ApplicationDetail title="Candidate Information" data={candidate} />
         <ApplicationDetail title="Job Application Details" data={application} />

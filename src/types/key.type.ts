@@ -11,6 +11,11 @@ export const API_PATHS = {
  * This is for better search across logs
  */
 export const LOG_KEYS = {
+  ACTION: {
+    DASHBOARD: {
+      GENERATE_WEBHOOK_URL: "action.dashboard.generate_webhook_url",
+    },
+  },
   API: {
     POSTMARK: {
       WEBHOOK: {

@@ -13,3 +13,14 @@ html,
 body {
   height: 100%;
 }
+
+@utility bg-genz-star {
+  background-image: url("/genz-star.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+@utility pb-dock-height {
+  padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+}

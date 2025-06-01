@@ -69,7 +69,11 @@ export async function handleWebhook(
     }
 
     // Step 3: Process with LLM
-    const extracted = await extractJobApplication(emailText, resumeText);
+    const extracted = await extractJobApplication(
+      emailText,
+      resumeText,
+      user.openaiApiKey,
+    );
     logInfo(LOG_KEYS.API.POSTMARK.WEBHOOK.PROCESSING_COMPLETE, {
       applicantEmail: extracted.applicant.email,
       applicantName: extracted.applicant.fullName,

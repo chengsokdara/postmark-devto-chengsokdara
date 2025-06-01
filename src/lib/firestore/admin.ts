@@ -160,7 +160,7 @@ export function normalizeData<T extends Record<string, any>>(data: any): T {
   for (const key in data) {
     const value: any = data[key];
     if (value instanceof Timestamp) {
-      result[key] = value.toDate().toISOString();
+      result[key] = value.toDate().toLocaleString();
     } else if (
       typeof value === "object" &&
       value !== null &&

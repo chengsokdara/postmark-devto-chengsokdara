@@ -20,6 +20,14 @@ export function ApplicationItem({
   return (
     <tr className="hover:bg-base-200">
       <th>{index + 1}</th>
+      <th className="px-0">
+        <Link
+          href={`/application/${application.id}`}
+          className="btn btn-circle btn-ghost"
+        >
+          <EyeIcon className="size-5" />
+        </Link>
+      </th>
       <td>{candidate?.fullName || "-"}</td>
       <td>{candidate?.currentJobTitle || "-"}</td>
       <td>{candidate?.currentCompany || "-"}</td>
@@ -30,16 +38,6 @@ export function ApplicationItem({
         {application.application?.submittedAt
           ? new Date(application.application.submittedAt).toLocaleDateString()
           : "-"}
-      </td>
-      <td>
-        <Link
-          href={`${process.env.APP_ORIGIN}/application/${application.id}`}
-          className="content"
-        >
-          <button className="btn btn-circle">
-            <EyeIcon className="size-5" />
-          </button>
-        </Link>
       </td>
     </tr>
   );

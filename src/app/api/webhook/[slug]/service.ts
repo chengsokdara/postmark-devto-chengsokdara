@@ -4,7 +4,7 @@ import {
   type AttachmentPayloadType,
   type JobApplication,
 } from "@/app/api/webhook/[slug]/schema";
-import { openai } from "@/lib/openai";
+import { createOpenAI } from "@/lib/openai";
 import { NoContentError, UnknownError } from "@/types/error.type";
 import { LOG_KEYS } from "@/types/key.type";
 import { logError, logInfo } from "@/utils/log";
@@ -34,6 +34,7 @@ export function extractResumeAttachments(
 export const extractJobApplication = async (
   emailText: string,
   resumeText?: string,
+  apiKey?: string, // OpenAI API key
 ): Promise<JobApplication> => {
   try {
     const systemPrompt = buildJobApplicationSystemPrompt();
@@ -49,6 +50,7 @@ export const extractJobApplication = async (
       resumeLength: resumeText?.length || 0,
     });
 
+    const openai = createOpenAI(apiKey);
     const response = await openai.responses.parse({
       model: "gpt-4o-2024-08-06",
       input: [

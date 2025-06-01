@@ -1,3 +1,5 @@
+import { renderValue } from "@/utils/render";
+
 type EmailDetailPropType = {
   data?: Record<string, any> | null;
   title: string;
@@ -5,24 +7,25 @@ type EmailDetailPropType = {
 
 export function EmailDetail({ data, title }: EmailDetailPropType) {
   if (!data) return null;
+  console.log({ data });
 
   return (
     <div className="card">
       <div className="card-body">
-        <h2 className="card-title text-lg">{title}</h2>
-
-        <div className="flex flex-wrap gap-4 mt-4 text-sm">
+        <h2 className="card-title text-2xl">{title}</h2>
+        <div className="columns-1 mt-3 xl:columns-2">
           {Object.entries(data).map(([key, value]) => {
             if (key === "id") return null;
+            if (!value) return null;
             return (
               <div
                 key={key}
-                className="bg-base-300 p-3 rounded-lg break-words flex-grow basis-full xl:basis-[48%]"
+                className="break-inside-avoid bg-base-300 p-3 mb-3 rounded-lg break-words"
               >
-                <div className="font-bold capitalize mb-1 whitespace-nowrap">
+                <div className="text-lg font-bold capitalize whitespace-nowrap">
                   {key.replace(/([A-Z])/g, " $1")}:
                 </div>
-                <div className="text-base-content/70">{renderValue(value)}</div>
+                <div className="text-base-content/60">{renderValue(value)}</div>
               </div>
             );
           })}
@@ -31,40 +34,3 @@ export function EmailDetail({ data, title }: EmailDetailPropType) {
     </div>
   );
 }
-
-const renderValue = (value: any): React.ReactNode => {
-  if (value == null) return "N/A";
-
-  if (typeof value === "boolean") return value ? "Yes" : "No";
-
-  if (value instanceof Date) return value.toDateString();
-
-  if (Array.isArray(value)) {
-    if (value.length === 0) return "[]";
-    return (
-      <ul className="list-disc list-inside space-y-1">
-        {value.map((item, idx) => (
-          <li key={idx} className="text-sm">
-            {renderValue(item)}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
-  if (typeof value === "object") {
-    const entries = Object.entries(value);
-    if (entries.length === 0) return "{}";
-    return (
-      <ul className="space-y-1">
-        {entries.map(([key, val]) => (
-          <li key={key} className="text-sm">
-            <strong className="capitalize">{key}:</strong> {renderValue(val)}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
-  return String(value);
-};

@@ -92,6 +92,7 @@ export type UpdateJobApplicationDataType = Partial<
 export type ProfileDataType = {
   avatar?: string | null;
   email?: string | null;
+  openaiApiKey?: string;
   slug?: string | null;
   name: string;
   uid: string;
