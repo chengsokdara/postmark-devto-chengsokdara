@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Postmark x Dev.to Challenge by Cheng Sokdara
 
-## Getting Started
+## What I Built
 
-First, run the development server:
+I built a web application that automates the initial stages of the hiring process by leveraging Next.js and Postmark's inbound email parsing feature. The application receives job application emails, uses an LLM (OpenAI GPT) to intelligently extract relevant information from the email body and any attached resumes (PDF or DOCX), and then stores this structured data in Firebase Firestore. This data, including candidate details, job application specifics, and the original parsed email, is then accessible via a dashboard for easy viewing and management.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Demo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+You can try out the live demo here:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+[https://postmark-devto-chengsokdara.vercel.app](https://postmark-devto-chengsokdara.vercel.app)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Testing Instructions:**
 
-## Learn More
+1.  Navigate to the demo application and log in using a Google account.
+2.  Once on the dashboard, you'll need to provide a username and a disposable OpenAI API key. This key is used securely on the server-side to process the parsed emails with the LLM.
+3.  After submitting the form, a unique webhook URL will be generated for you.
+4.  Copy this webhook URL.
+5.  Go to your Postmark account, navigate to your inbound email settings, and paste this webhook URL. Save the changes.
+6.  Now, using any email client, compose a job application email (you can attach a resume in PDF or DOCX format) and send it to your Postmark inbound email address.
+7.  Wait a few seconds for the processing to complete.
+8.  Refresh the dashboard in the web app or navigate to the "Applications," "Candidates," or "Emails" pages to see the parsed data.
 
-To learn more about Next.js, take a look at the following resources:
+## Code Repository
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The complete source code is available on GitHub:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+[https://github.com/chengsokdara/postmark-devto-chengsokdara](https://github.com/chengsokdara/postmark-devto-chengsokdara)
 
-## Deploy on Vercel
+## How I Built It
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+I developed this project from scratch with the help of ChatGPT and Grok. This involved writing original utility functions and a few custom UI components.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The core process flow is as follows:
+
+1.  Postmark receives an inbound job application email and parses it, providing a JSON representation.
+2.  My application ingests this JSON. If a resume (PDF or DOCX) is attached, it's parsed using `pdf2json` for PDFs or `mammoth` for DOCX files.
+3.  The combined data (parsed email content and parsed resume text) is then sent to the OpenAI GPT LLM.
+4.  The LLM processes this information, extracting key details and structuring them.
+5.  This structured data, which includes candidate information, job application details, and the original parsed email, is then saved to Firebase Firestore.
+
+My experience with Postmark's inbound parsing was straightforward; the JSON output was easy to work with and integrate into the application flow.
+
+**Tech Stack:**
+
+- **Framework:** Next.js (App Router) with TypeScript
+- **Styling:** Tailwind CSS & Daisy UI
+- **Database:** Firebase Firestore
+- **Authentication:** Firebase Auth
+- **State Management (Global Toast):** Zustand
+- **File Parsing:** `pdf2json` (for PDFs), `mammoth` (for DOCX)
+- **Validation:** Zod
+- **LLM:** OpenAI GPT-3.5 (or your preferred model)
+- **Icons:** Heroicons
+- **Email Parsing Service:** Postmark
+
+## Team Submissions
+
+[@chengsokdara](https://dev.to/chengsokdara)
+
+---
+
+Contact me for web or mobile app development using React or React Native
+https://chengsokdara.github.io
